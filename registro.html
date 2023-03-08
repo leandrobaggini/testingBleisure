@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de usuario</title>
+    <style>
+        form {
+        display: flex;
+        flex-wrap: wrap;
+        }
+
+        label {
+         width: 100px;
+        }
+
+        input {
+        margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label>Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label>Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Sign Up</button>
+      </form>
+      <br>
+      <button onclick="signInWithGoogle()">Sign up with Google</button>
+      <button onclick="signInWithFacebook()">Sign up with Facebook</button>
+</body>
+    <script>
+        function signInWithGoogle() {
+        // Utilizar la API de inicio de sesión de Google para iniciar sesión con Google
+        }
+
+        function signInWithFacebook() {
+        // Utilizar la API de inicio de sesión de Facebook para iniciar sesión con Facebook
+        }
+    </script>
+</html>

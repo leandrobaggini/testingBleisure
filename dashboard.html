@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        #dashboard {
+            display: flex;
+        }
+
+        #user-info {
+            flex: 1;
+            align-items: center;
+            text-align: center;
+        }
+
+        #user-photo {
+         width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        }
+
+        #upload-photo {
+        display: none;
+        }
+
+        #upload-photo + label {
+        cursor: pointer;
+        }
+
+        #challenge-panel {
+        flex: 1;
+        border: 1px solid black;
+        padding: 10px;
+        }
+
+        .challenge {
+        margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="dashboard">
+        <div id="user-info">
+          <img id="user-photo" src="default-user.jpg">
+          <input type="file" id="upload-photo" accept="image/*">
+          <label for="upload-photo">Cambiar foto de perfil</label>
+          <p id="username"></p>
+          <p id="user-level"></p>
+        </div>
+        <div id="challenge-panel">
+          <h2>Panel de desafíos</h2>
+          <div id="challenge-list">
+            <div class="challenge">Desafío 1</div>
+            <div class="challenge">Desafío 2</div>
+            <div class="challenge">Desafío 3</div>
+            <div class="challenge">Desafío 4</div>
+            <div class="challenge">Desafío 5</div>
+          </div>
+          <p id="progress"></p>
+        </div>
+      </div>
+</body>
+    <script>
+    // Obtener información del usuario desde una API o base de datos
+        let username = "John Doe";
+        let userLevel = "Nivel 1";
+        let userPhoto = "default-user.jpg";
+
+        // Asignar información del usuario a los elementos del HTML
+        document.getElementById("username").innerHTML = username;
+        document.getElementById("user-level").innerHTML = userLevel;
+        document.getElementById("user-photo").src = userPhoto;
+
+        // Subir foto de perfil
+        let uploadPhoto = document.getElementById("upload-photo");
+        uploadPhoto.addEventListener("change", function() {
+        let file = this.files[0];
+        let reader = new FileReader();
+        reader.onload = function() {
+            document.getElementById("user-photo").src = reader.result;
+            // Guardar la nueva foto en tu servidor o base de datos
+        }
+        reader.readAsDataURL(file);
+        });
+
+        // Calcular progreso en desafíos
+        let progress = 0;
+        let challengeList = document.getElementById("challenge-list");
+        challengeList.addEventListener("click", function(e) {
+        if (e.target.classList.contains("challenge")) {
+            progress++;
+            e.target.style.textDecoration = "line-through";
+            document.getElementById("progress").innerHTML = `Progreso: ${progress}/5 para el siguiente nivel`;
+            if (progress === 5) {
+            // Actualizar nivel del usuario en tu servidor o base de datos
+            alert("¡Felicidades! Has completado todos los desafíos y has subido de nivel.");
+            }
+        }
+        });
+    </script>
+</html>
